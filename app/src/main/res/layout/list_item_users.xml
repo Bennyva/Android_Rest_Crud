@@ -55,7 +55,8 @@
             android:layout_centerInParent="true"
             android:scaleType="centerCrop"
             android:src="@drawable/star"
-            android:tint="@color/colorAccent" />
+            android:tint="@color/colorAccent"
+            android:layout_gravity="left|center_vertical"/>
 
 
         <TextView
@@ -63,7 +64,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="5.0" />
+            android:text="5.0"
+            android:layout_gravity="right|center_vertical"/>
     </LinearLayout>
 
 </LinearLayout>

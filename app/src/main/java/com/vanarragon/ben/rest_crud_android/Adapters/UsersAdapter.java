@@ -1,6 +1,7 @@
 package com.vanarragon.ben.rest_crud_android.Adapters;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import com.vanarragon.ben.rest_crud_android.R;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
 
+    //private static MyClickListener myClickListener;
+
     private List<User> users;
     private int rowLayout;
     private Context context;
@@ -22,6 +25,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
     public static class UserViewHolder extends RecyclerView.ViewHolder {
         LinearLayout usersLayout;
+        CardView cvUsersLayout;
         TextView userID;
         TextView userEmail;
         TextView userPassword;
@@ -31,6 +35,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         public UserViewHolder(View v) {
             super(v);
             usersLayout = (LinearLayout) v.findViewById(R.id.users_layout);
+            cvUsersLayout = (CardView) v.findViewById(R.id.cv_users_layout);
+
             userID = (TextView) v.findViewById(R.id.user_id);
             userEmail = (TextView) v.findViewById(R.id.user_email);
             userPassword = (TextView) v.findViewById(R.id.user_password);

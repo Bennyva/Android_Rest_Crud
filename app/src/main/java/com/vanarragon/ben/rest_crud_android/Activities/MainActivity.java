@@ -11,13 +11,16 @@ import com.vanarragon.ben.rest_crud_android.R;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    FragmentTransaction transaction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
+        transaction = fm.beginTransaction();
         MainFragment mainFragment = new MainFragment();
 
         //removes views from layout beneath
@@ -26,5 +29,10 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.fragment_container, mainFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+
+
     }
+
+
+
 }
