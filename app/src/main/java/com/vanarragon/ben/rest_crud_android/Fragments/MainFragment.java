@@ -5,6 +5,7 @@ package com.vanarragon.ben.rest_crud_android.Fragments;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -118,7 +119,7 @@ public class MainFragment extends Fragment{
                                             public void onClick(DialogInterface dialog,int id) {
                                                 // if this button is clicked, close
                                                 // current activity
-                                                getActivity().finish();
+                                                //getActivity().finish();
                                             }
                                         })
                                         .setNegativeButton("No",new DialogInterface.OnClickListener() {
@@ -147,6 +148,14 @@ public class MainFragment extends Fragment{
             }
         });
 
+        final Handler handler = new Handler();
+        /*handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                triggerAnimate();
+            }
+        }, 5000);*/
+
         View v = inflater.inflate(R.layout.fragment_main, container, false);
         return v;
 
@@ -154,6 +163,36 @@ public class MainFragment extends Fragment{
 
 
 
+    }
+
+    public void triggerAnimate(){
+        //open new fragment
+        DetailedView detailedView= new DetailedView();
+        // Our shared element (in Fragment A)
+        CardView view2   = (CardView) getView().findViewById(R.id.cv_users_layout);
+
+        //animation stuff
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setSharedElementReturnTransition(TransitionInflater.from(
+                    getActivity()).inflateTransition(R.transition.expand_cardview_trans));
+            setExitTransition(TransitionInflater.from(
+                    getActivity()).inflateTransition(android.R.transition.no_transition));
+
+            detailedView.setSharedElementEnterTransition(TransitionInflater.from(
+                    getActivity()).inflateTransition(R.transition.expand_cardview_trans));
+            detailedView.setEnterTransition(TransitionInflater.from(
+                    getActivity()).inflateTransition(android.R.transition.no_transition));
+        }*/
+
+
+
+
+        //transition fragments
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        //transaction.addSharedElement(view2, "userViewTransition");
+        transaction.replace(R.id.fragment_container, detailedView);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 
