@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Rest_Crud_Android</string>
+
+    <string name="menu_title">Please Choose an Option</string>
+    <string name="btnTraining">Training</string>
+    <string name="btnTesting">Testing</string>
+    <string name="btnResults">Results</string>
+    <string name="btnSettings">Logout</string>
+
+    <string name="loading">Loading</string>
+
+    <string name="appDesc">This is a location aware check-in mobile application for android.</string>
+    <string name="appMoreInfo">To add a location, click the Greet "add" button in the bottom right to get started.</string>
+
 </resources>

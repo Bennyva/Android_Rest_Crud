@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:gravity="center_horizontal">
+
+    <TextView
+        android:text="@string/menu_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:id="@+id/menu_title"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <Button
+        android:layout_width="285dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/btnTraining"
+        android:background="@color/colorPrimary"
+        android:text="@string/btnTraining"
+        android:textColor="@color/white"/>
+    <Button
+        android:layout_width="285dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/btnTesting"
+        android:background="@color/colorPrimary"
+        android:text="@string/btnTesting"
+        android:textColor="@color/white"/>
+    <Button
+        android:layout_width="285dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/btnResults"
+        android:background="@color/colorPrimary"
+        android:text="@string/btnResults"
+        android:textColor="@color/white"/>
+    <Button
+        android:layout_width="285dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/btnSettings"
+        android:background="@color/colorPrimary"
+        android:text="@string/btnSettings"
+        android:textColor="@color/white"
+        android:onClick="logout"/>
+
+
+
+
+</LinearLayout>

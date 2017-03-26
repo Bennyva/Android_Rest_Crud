@@ -1,0 +1,81 @@
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cv_categories_layout"
+    android:transitionName="userViewTransition"
+    android:gravity="center_vertical"
+    android:minHeight="72dp"
+    android:focusable="true"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+
+    android:background="#FEFEFE"
+    android:layout_margin="6dp"
+    card_view:cardCornerRadius="4dp">
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:orientation="horizontal"
+            android:layout_gravity="right|center_vertical">
+
+            <!--<ImageView
+                android:id="@+id/rating_image"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_centerInParent="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/star"
+                android:tint="@color/colorAccent" />-->
+
+
+            <TextView
+                android:id="@+id/category_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="5.0" />
+        </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/category_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:paddingRight="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp" />
+
+
+        <!--<TextView
+            android:id="@+id/user_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="16dp"
+            android:textColor="@color/colorGreyLight"/>
+
+
+
+        <TextView
+            android:id="@+id/user_join_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:paddingRight="16dp"
+            android:textColor="@color/colorGreyLight" />-->
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
+
+

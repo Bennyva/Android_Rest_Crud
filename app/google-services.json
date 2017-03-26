@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "611441548551",
+    "project_id": "paramedic-trainer"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611441548551:android:052aae58f73aee8b",
+        "android_client_info": {
+          "package_name": "com.vanarragon.ben.rest_crud_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611441548551-vo6cnou2d7nds86q5ng78jn4tv4ukmcb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vanarragon.ben.rest_crud_android",
+            "certificate_hash": "b0daa6dba06751b0c553421e55f1ca06c570d9d3"
+          }
+        },
+        {
+          "client_id": "611441548551-7hlq0vmgkiuncpqkpv1ok5m4sacmtrc6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLZpkAdvbJS02y1nIH3wIYmbubXV-vwuw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

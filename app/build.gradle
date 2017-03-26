@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    /*signingConfigs {
+        config {
+            storeFile file('C:/Users/jamin/AndroidKeyStore/keystore.release.jks')
+            keyAlias 'releasekey'
+            keyPassword 'Carrots#11'
+            storePassword 'Carrots#11'
+        }
+    }*/
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
@@ -41,5 +49,15 @@ dependencies {
     compile "com.squareup.retrofit2:adapter-rxjava:2.1.0"
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.0'
 
+    //-----for google g son
     compile 'com.google.code.gson:gson:2.8.0'
+
+    //for google play services
+    compile 'com.google.android.gms:play-services:9.8.0'
+    compile 'com.google.android.gms:play-services-location:9.8.0'
+    compile 'com.google.android.gms:play-services-auth:9.8.0'
+    compile 'com.android.volley:volley:1.0.0'
+    compile 'com.google.code.gson:gson:2.4'
 }
+/*
+/*apply plugin: 'com.google.gms.google-services'*/

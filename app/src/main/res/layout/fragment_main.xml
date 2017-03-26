@@ -3,11 +3,13 @@
                 android:id="@+id/fragment_main"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                tools:context="com.vanarragon.ben.rest_crud_android.Fragments.MainFragment"
-                >
+                tools:context="com.vanarragon.ben.rest_crud_android.Fragments.TrainingFragment"
+
+    >
+    <!-- include tools:showIn="@layout/app_bar_main"> for menu creation-->
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/users_recycler_view"
+        android:id="@+id/categories_recycler_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"/>
 
