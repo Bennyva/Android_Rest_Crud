@@ -32,11 +32,6 @@ public class MainActivity extends Base {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
-
-
         dialog = new ProgressDialog(this,1);
 
         FragmentManager fm = getSupportFragmentManager();
@@ -51,8 +46,6 @@ public class MainActivity extends Base {
         transaction.replace(R.id.fragment_container, menuFragment);
         transaction.addToBackStack(null);
         transaction.commit();
-
-
     }
 
     @Override

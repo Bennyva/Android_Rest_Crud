@@ -55,7 +55,7 @@
         android:background="@color/colorPrimary"
         android:text="@string/btnSettings"
         android:textColor="@color/white"
-        android:onClick="logout"/>
+        />
 
 
 

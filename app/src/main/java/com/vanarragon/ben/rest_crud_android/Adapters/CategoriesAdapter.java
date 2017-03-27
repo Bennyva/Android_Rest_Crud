@@ -59,10 +59,10 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     @Override
     public void onBindViewHolder(CategoryViewHolder holder, final int position) {
-        System.out.println("categoryID " + holder.categoryID);
+        /*System.out.println("categoryID " + holder.categoryID);
         System.out.println("categoryName " + holder.categoryName);
         System.out.println("categoryID " + categories.get(position).getCategoryID().toString());
-        System.out.println("categoryID " + categories.get(position).getCategoryName());
+        System.out.println("categoryID " + categories.get(position).getCategoryName());*/
         holder.categoryID.setText(categories.get(position).getCategoryID().toString());
         holder.categoryName.setText(categories.get(position).getCategoryName());
 

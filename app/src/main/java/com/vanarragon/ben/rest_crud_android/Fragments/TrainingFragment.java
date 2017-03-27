@@ -62,7 +62,7 @@ public class TrainingFragment extends Fragment{
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
                 int statusCode = response.code();
                 //List<User> users = response.body().getUsers();
-                List<Category> categories = response.body().getCategories();
+                final List<Category> categories = response.body().getCategories();
 
                 RecyclerView recyclerView = (RecyclerView) getView().findViewById(R.id.categories_recycler_view);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -94,8 +94,13 @@ public class TrainingFragment extends Fragment{
 
                                 //passing bundle info
                                 //TODO find how to pass data from the view object
+                                String catName = categories.get(position).getCategoryName();
+                                int catID = categories.get(position).getCategoryID();
+
                                 Bundle bundle = new Bundle();
-                                bundle.putInt("ID", position);
+                                bundle.putInt("ID", catID);
+                                bundle.putString("CatName", catName);
+
                                 detailedView.setArguments(bundle);
 
                                 //transition fragments

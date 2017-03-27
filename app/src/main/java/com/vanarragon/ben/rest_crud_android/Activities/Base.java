@@ -96,6 +96,7 @@ public class Base extends AppCompatActivity {
         goToActivity(this, MainActivity.class, null);
     }
 
+    //you have to pass menu item item for the handler to find the menu item method
     public void logout(MenuItem item) {
 
         /*Plus.AccountApi.clearDefaultAccount(Base.mGoogleApiClient);
