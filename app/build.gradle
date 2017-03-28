@@ -58,6 +58,10 @@ dependencies {
     compile 'com.google.android.gms:play-services-auth:9.8.0'
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.google.code.gson:gson:2.4'
+
+    //for customized toasts - https://android-arsenal.com/details/1/5276
+    //style your toast in styles.xml
+    compile 'com.muddzdev:styleabletoast:1.0.7'
 }
 /*
 /*apply plugin: 'com.google.gms.google-services'*/

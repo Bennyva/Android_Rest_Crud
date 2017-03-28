@@ -17,10 +17,10 @@ public class Answer {
     @SerializedName("answer_text")
     private String answerText;
     @SerializedName("category_id")
-    private String categoryID;
+    private int categoryID;
 
 
-    public Answer(Integer answerID, String answerText, String categoryID, Integer isCorrect, Integer questionID) {
+    public Answer(Integer answerID, String answerText, int categoryID, Integer isCorrect, Integer questionID) {
         this.answerID = answerID;
         this.answerText = answerText;
         this.categoryID = categoryID;
@@ -44,11 +44,11 @@ public class Answer {
         this.answerText = answerText;
     }
 
-    public String getCategoryID() {
+    public Integer getCategoryID() {
         return categoryID;
     }
 
-    public void setCategoryID(String categoryID) {
+    public void setCategoryID(Integer categoryID) {
         this.categoryID = categoryID;
     }
 

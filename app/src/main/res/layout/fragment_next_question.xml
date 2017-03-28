@@ -23,58 +23,114 @@
         android:layout_margin="6dp"
         card_view:cardCornerRadius="4dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/next_question_textview4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:paddingRight="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"
+            android:layout_gravity="center_horizontal"
+            android:textSize="26sp"/>
+
+<!--        <TextView
+            android:id="@+id/next_question_textview"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical">
-
-            <TextView
-                android:id="@+id/next_question_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="top"
-                android:paddingRight="16dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorBlack"
-                android:textSize="16sp" />
+            android:layout_gravity="top"
+            android:paddingRight="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp" />
 
 
-            <TextView
-                android:id="@+id/next_question_textview2"
+        <TextView
+            android:id="@+id/next_question_textview2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="16dp"
+            android:textColor="@color/colorGreyLight"/>
+
+        <TextView
+            android:id="@+id/next_question_textview3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:paddingRight="16dp"
+            android:textColor="@color/colorGreyLight" />-->
+
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="15dp"
+            android:id="@+id/rgAnswers"
+            android:layout_gravity="left|center_vertical">
+
+            <!--<RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb1"
+            android:text="1">
+            </RadioButton>
+
+            <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingRight="16dp"
-                android:textColor="@color/colorGreyLight"/>
+                android:id="@+id/rb2"
+                android:text="1">
+            </RadioButton>
 
-            <TextView
-                android:id="@+id/next_question_textview3"
+            <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="3"
-                android:paddingRight="16dp"
-                android:textColor="@color/colorGreyLight" />
+                android:id="@+id/rb3"
+                android:text="1">
+            </RadioButton>
 
-            <TextView
-                android:id="@+id/next_question_textview4"
+            <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="3"
-                android:paddingRight="16dp"
-                android:textColor="@color/colorGreyLight" />
+                android:id="@+id/rb4"
+                android:text="1">
+            </RadioButton>-->
 
-            <Button
+        </RadioGroup>
+
+
+
+
+
+        <Button
                 android:layout_width="285dp"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
+                android:layout_height="50dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="15dp"
-                android:id="@+id/btnNextQuestion"
+                android:id="@+id/btnStart"
                 android:background="@color/colorPrimary"
-                android:text="Start"
-                android:textColor="@color/white"/>
+                android:text="Next Question"
+                android:layout_gravity="bottom|center_horizontal"
+                android:textColor="@color/white"
+                android:visibility="invisible"
+                android:enabled="false"
+                />
 
-        </LinearLayout>
+        <Button
+            android:layout_width="285dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="25dp"
+            android:id="@+id/btnNextQuestion"
+            android:background="@color/colorPrimary"
+            android:text="Start"
+            android:layout_gravity="bottom|center_horizontal"
+            android:textColor="@color/white"
+            android:visibility="visible"
+            />
+
+
 
     </android.support.v7.widget.CardView>
 

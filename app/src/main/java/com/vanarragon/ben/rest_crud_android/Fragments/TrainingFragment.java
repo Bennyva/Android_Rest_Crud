@@ -3,30 +3,23 @@ package com.vanarragon.ben.rest_crud_android.Fragments;
 
 
 import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.vanarragon.ben.rest_crud_android.Activities.MainActivity;
 import com.vanarragon.ben.rest_crud_android.Adapters.CategoriesAdapter;
 import com.vanarragon.ben.rest_crud_android.Adapters.RecyclerItemClickListener;
-import com.vanarragon.ben.rest_crud_android.Adapters.UsersAdapter;
 import com.vanarragon.ben.rest_crud_android.Models.Category;
 import com.vanarragon.ben.rest_crud_android.Models.CategoryResponse;
-import com.vanarragon.ben.rest_crud_android.Models.User;
-import com.vanarragon.ben.rest_crud_android.Models.UserResponse;
 import com.vanarragon.ben.rest_crud_android.R;
 import com.vanarragon.ben.rest_crud_android.Rest.ApiClient;
 import com.vanarragon.ben.rest_crud_android.Rest.ApiInterface;
@@ -40,7 +33,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.vanarragon.ben.rest_crud_android.R.layout.cardview_categories;
-import static com.vanarragon.ben.rest_crud_android.R.layout.cardview_users;
 
 /**
  * Created by Benjamin van Arragon on 2017-02-28.
@@ -75,7 +67,7 @@ public class TrainingFragment extends Fragment{
                                 Toast.makeText(getActivity(),"Hi, short press" + position,Toast.LENGTH_LONG).show();
 
                                 //open new fragment
-                                DetailedView detailedView= new DetailedView();
+                                NextQuestion nextQuestion = new NextQuestion();
                                 // Our shared element (in Fragment A)
                                 CardView view2   = (CardView) getView().findViewById(R.id.cv_categories_layout);
 
@@ -86,9 +78,9 @@ public class TrainingFragment extends Fragment{
                                     setExitTransition(TransitionInflater.from(
                                             getActivity()).inflateTransition(android.R.transition.no_transition));
 
-                                    detailedView.setSharedElementEnterTransition(TransitionInflater.from(
+                                    nextQuestion.setSharedElementEnterTransition(TransitionInflater.from(
                                             getActivity()).inflateTransition(R.transition.expand_cardview_trans));
-                                    detailedView.setEnterTransition(TransitionInflater.from(
+                                    nextQuestion.setEnterTransition(TransitionInflater.from(
                                             getActivity()).inflateTransition(android.R.transition.no_transition));
                                 }*/
 
@@ -101,12 +93,12 @@ public class TrainingFragment extends Fragment{
                                 bundle.putInt("ID", catID);
                                 bundle.putString("CatName", catName);
 
-                                detailedView.setArguments(bundle);
+                                nextQuestion.setArguments(bundle);
 
                                 //transition fragments
                                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                                 //transaction.addSharedElement(view2, "userViewTransition");
-                                transaction.replace(R.id.fragment_container, detailedView);
+                                transaction.replace(R.id.fragment_container, nextQuestion);
                                 transaction.addToBackStack(null);
                                 transaction.commit();
                             }
@@ -177,7 +169,7 @@ public class TrainingFragment extends Fragment{
 
     public void triggerAnimate(){
         //open new fragment
-        DetailedView detailedView= new DetailedView();
+        NextQuestion nextQuestion = new NextQuestion();
         // Our shared element (in Fragment A)
         CardView view2   = (CardView) getView().findViewById(R.id.cv_categories_layout);
 
@@ -188,9 +180,9 @@ public class TrainingFragment extends Fragment{
             setExitTransition(TransitionInflater.from(
                     getActivity()).inflateTransition(android.R.transition.no_transition));
 
-            detailedView.setSharedElementEnterTransition(TransitionInflater.from(
+            nextQuestion.setSharedElementEnterTransition(TransitionInflater.from(
                     getActivity()).inflateTransition(R.transition.expand_cardview_trans));
-            detailedView.setEnterTransition(TransitionInflater.from(
+            nextQuestion.setEnterTransition(TransitionInflater.from(
                     getActivity()).inflateTransition(android.R.transition.no_transition));
         }*/
 
@@ -200,7 +192,7 @@ public class TrainingFragment extends Fragment{
         //transition fragments
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         //transaction.addSharedElement(view2, "userViewTransition");
-        transaction.replace(R.id.fragment_container, detailedView);
+        transaction.replace(R.id.fragment_container, nextQuestion);
         transaction.addToBackStack(null);
         transaction.commit();
     }

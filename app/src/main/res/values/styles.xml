@@ -39,6 +39,29 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="SuccessToast">
+
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:colorBackground">#00a000</item>
+        <item name="android:radius">4dp</item>  radius for corners of the toast shape
+        <item name="android:alpha">175</item>   value between 0-255 where 255 is full solid
+        <item name="android:icon">@drawable/ic_check_white_24dp</item>  drawable id of the icon. R.drawable.xx
+
+    </style>
+
+
+    <style name="WrongToast">
+
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:colorBackground">#950202</item>
+        <item name="android:radius">4dp</item>  radius for corners of the toast shape
+        <item name="android:alpha">175</item>   value between 0-255 where 255 is full solid
+        <item name="android:icon">@drawable/ic_mood_bad_white_24dp</item>  drawable id of the icon. R.drawable.xx
+
+    </style>
+
 </resources>
 
 
