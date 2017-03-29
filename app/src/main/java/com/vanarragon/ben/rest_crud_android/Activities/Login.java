@@ -287,6 +287,10 @@ public class Login extends AppCompatActivity implements GoogleApiClient.Connecti
                 Base.googleName = acct.getDisplayName();
                 userFirstName = acct.getGivenName();
                 userLastName = acct.getFamilyName();
+
+                Base.firstName = userFirstName;
+                Base.lastName = userLastName;
+
                 Date nowDate = new Date();
                 System.out.println(nowDate);
                 java.text.SimpleDateFormat sdf =
@@ -295,6 +299,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.Connecti
                 //System.out.println(userFirstName);
                 //System.out.println(userLastName);
                 Base.googleMail = acct.getEmail();
+
 
                 // ============
                 // SELECT * FROM USERS DATABASE, LOOP THROUGH TO CHECK IF OUR USER EMAIL ALREADY EXISTS
@@ -311,6 +316,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.Connecti
                             int j = users.get(i).getUserEmail().indexOf(Base.googleMail);
                             if(users.get(i).getUserEmail().equals(Base.googleMail)){
                                 System.out.println("Welcome back " + Base.googleMail);
+                                Base.userID = users.get(i).getUserID();
                                 userEmailDB = users.get(i).getUserEmail();
                                 lastLogInDB = users.get(i).getLastLogIn();
                                 logInCountDB = users.get(i).getLogInCount();

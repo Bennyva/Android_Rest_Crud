@@ -12,11 +12,22 @@ public class Category {
     private Integer categoryID;
     @SerializedName("category_name")
     private String categoryName;
+    @SerializedName("category_desc")
+    private String categoryDescription;
 
 
-    public Category(Integer categoryID, String categoryName) {
+    public Category(String categoryDescription, Integer categoryID, String categoryName) {
+        this.categoryDescription = categoryDescription;
         this.categoryID = categoryID;
         this.categoryName = categoryName;
+    }
+
+    public String getCategoryDescription() {
+        return categoryDescription;
+    }
+
+    public void setCategoryDescription(String categoryDescription) {
+        this.categoryDescription = categoryDescription;
     }
 
     public Integer getCategoryID() {

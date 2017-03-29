@@ -67,5 +67,11 @@ public interface ApiInterface {
                           @Field("logInCount") int logInCount,
                           @Field("userEmail") String userEmail);
 
-
+    @FormUrlEncoded
+    @POST("results")
+    Call<Void> insertResult(@Field("resultScore") int resultScore,
+                          @Field("userID") String userID,
+                          @Field("categoryID") int categoryID,
+                          @Field("totalLength") int totalLength,
+                          @Field("dateWritten") String dateWritten);
 }

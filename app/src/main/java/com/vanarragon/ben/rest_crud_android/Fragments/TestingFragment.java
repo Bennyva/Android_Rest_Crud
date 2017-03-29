@@ -1,11 +1,11 @@
 package com.vanarragon.ben.rest_crud_android.Fragments;
 
 
-
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
@@ -26,8 +26,6 @@ import com.vanarragon.ben.rest_crud_android.R;
 import com.vanarragon.ben.rest_crud_android.Rest.ApiClient;
 import com.vanarragon.ben.rest_crud_android.Rest.ApiInterface;
 
-import android.support.v4.app.Fragment;
-
 import java.util.List;
 
 import retrofit2.Call;
@@ -40,7 +38,7 @@ import static com.vanarragon.ben.rest_crud_android.R.layout.cardview_categories;
  * Created by Benjamin van Arragon on 2017-02-28.
  */
 
-public class TrainingFragment extends Fragment{
+public class TestingFragment extends Fragment{
 
 
 
@@ -67,7 +65,7 @@ public class TrainingFragment extends Fragment{
                             @Override public void onItemClick(View view, int position) {
                                 // do whatever
                                 Toast.makeText(getActivity(),"Training in " + categories.get(position).getCategoryName(),Toast.LENGTH_LONG).show();
-                                openTrainingModule(position, categories);
+                                openTestingModule(position, categories);
 
                             }
 
@@ -88,7 +86,7 @@ public class TrainingFragment extends Fragment{
                                         .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog,int id) {
                                                 // if this button is clicked, close
-                                                openTrainingModule(position, categories);
+                                                openTestingModule(position, categories);
                                             }
                                         })
                                         .setNegativeButton("No",new DialogInterface.OnClickListener() {
@@ -165,9 +163,9 @@ public class TrainingFragment extends Fragment{
     }
 
 
-    private void openTrainingModule(int position, List<Category> categories){
+    private void openTestingModule(int position, List<Category> categories){
         //open new fragment
-        NextQuestion nextQuestion = new NextQuestion();
+        TestNextQuestion testNextQuestion = new TestNextQuestion();
         // Our shared element (in Fragment A)
         CardView view2   = (CardView) getView().findViewById(R.id.cv_categories_layout);
 
@@ -178,9 +176,9 @@ public class TrainingFragment extends Fragment{
             setExitTransition(TransitionInflater.from(
                     getActivity()).inflateTransition(android.R.transition.no_transition));
 
-            nextQuestion.setSharedElementEnterTransition(TransitionInflater.from(
+            testNextQuestion.setSharedElementEnterTransition(TransitionInflater.from(
                     getActivity()).inflateTransition(R.transition.expand_cardview_trans));
-            nextQuestion.setEnterTransition(TransitionInflater.from(
+            testNextQuestion.setEnterTransition(TransitionInflater.from(
                     getActivity()).inflateTransition(android.R.transition.no_transition));
         }
 
@@ -193,12 +191,12 @@ public class TrainingFragment extends Fragment{
         bundle.putInt("ID", catID);
         bundle.putString("CatName", catName);
 
-        nextQuestion.setArguments(bundle);
+        testNextQuestion.setArguments(bundle);
 
         //transition fragments
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.addSharedElement(view2, "userViewTransition");
-        transaction.replace(R.id.fragment_container, nextQuestion);
+        transaction.replace(R.id.fragment_container, testNextQuestion);
         transaction.addToBackStack(null);
         transaction.commit();
     }

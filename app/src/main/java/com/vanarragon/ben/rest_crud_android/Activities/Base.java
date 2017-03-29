@@ -35,6 +35,9 @@ public class Base extends AppCompatActivity {
     public static String googleToken;
     public static String googleName;
     public static String googleMail;
+    public static String userID;
+    public static String firstName;
+    public static String lastName;
     public static String googlePhotoURL;
     public static Bitmap googlePhoto;
     public static ProgressDialog dialog;

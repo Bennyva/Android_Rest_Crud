@@ -28,6 +28,7 @@ public class MenuFragment extends Fragment{
     private Button btnTraining, btnTesting, btnResults, btnSettings;
     FragmentTransaction transaction;
     TrainingFragment trainingFragment;
+    TestingFragment testingFragment;
 
 
     //view for fragment
@@ -54,6 +55,18 @@ public class MenuFragment extends Fragment{
                 transaction = fm.beginTransaction();
                 trainingFragment = new TrainingFragment();
                 transaction.replace(R.id.fragment_container, trainingFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+        btnTesting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getFragmentManager();
+                transaction = fm.beginTransaction();
+                testingFragment = new TestingFragment();
+                transaction.replace(R.id.fragment_container, testingFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
