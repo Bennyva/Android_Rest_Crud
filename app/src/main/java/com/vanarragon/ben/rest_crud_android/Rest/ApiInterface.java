@@ -4,6 +4,8 @@ package com.vanarragon.ben.rest_crud_android.Rest;
  * Created by Benjamin van Arragon on 2017-02-21.
  */
 
+import android.database.Observable;
+
 import com.vanarragon.ben.rest_crud_android.Models.AnswerResponse;
 import com.vanarragon.ben.rest_crud_android.Models.CategoryResponse;
 import com.vanarragon.ben.rest_crud_android.Models.QuestionResponse;
@@ -12,8 +14,16 @@ import com.vanarragon.ben.rest_crud_android.Models.UserResponse;
 
 import java.util.List;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -41,5 +51,21 @@ public interface ApiInterface {
 
     @GET("answers/{category_id}")
     Call<AnswerResponse> retrieveAnswersPerCategory(@Path("category_id") int category_id);
+
+    @FormUrlEncoded
+    @POST("users")
+    Call<Void> createUser(@Field("userID") String userID,
+                    @Field("userEmail") String userEmail,
+                    @Field("lastLogIn") String lastLogIn,
+                    @Field("logInCount") String logInCount,
+                    @Field("userFirstName") String userFirstName,
+                    @Field("userLastName") String userLastName);
+
+    @FormUrlEncoded
+    @PUT("users")
+    Call<Void> updateUser(@Field("lastLogIn") String lastLogIn,
+                          @Field("logInCount") int logInCount,
+                          @Field("userEmail") String userEmail);
+
 
 }

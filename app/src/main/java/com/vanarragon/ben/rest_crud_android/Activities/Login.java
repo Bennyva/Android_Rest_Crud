@@ -3,6 +3,7 @@ package com.vanarragon.ben.rest_crud_android.Activities;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
@@ -10,8 +11,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -30,14 +36,36 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationServices;
+import com.vanarragon.ben.rest_crud_android.Adapters.CategoriesAdapter;
+import com.vanarragon.ben.rest_crud_android.Adapters.RecyclerItemClickListener;
+import com.vanarragon.ben.rest_crud_android.Fragments.NextQuestion;
+import com.vanarragon.ben.rest_crud_android.Models.Category;
+import com.vanarragon.ben.rest_crud_android.Models.CategoryResponse;
+import com.vanarragon.ben.rest_crud_android.Models.User;
+import com.vanarragon.ben.rest_crud_android.Models.UserResponse;
 import com.vanarragon.ben.rest_crud_android.R;
+import com.vanarragon.ben.rest_crud_android.Rest.ApiClient;
+import com.vanarragon.ben.rest_crud_android.Rest.ApiInterface;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static com.vanarragon.ben.rest_crud_android.R.layout.cardview_categories;
 
 //DONT CALL ON STOP HERE IT BREAKS THE APPLICATION SO MUCH, SPENT 24 HOURS STRAIGHT TRYING TO FIX THAT STUPID BUG...
 //I WILL REMEMBER THIS NIGHT! UP UNTIL 9:30AM DEBUGGING, SLEPT IN UNTIL 6PM, AND SOLVED IT AT 9:00...that'll go down in my history
@@ -67,6 +95,14 @@ public class Login extends AppCompatActivity implements GoogleApiClient.Connecti
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
     private ProgressDialog mProgressDialog;
+
+    List<User> users;
+    String userIDDB, userEmailDB, userFirstNameDB, userLastNameDB;
+    int logInCountDB;
+    String lastLogInDB;
+
+    String userFirstName, userLastName, currentLogIn;
+
 
     //video background
     VideoView videoView;
@@ -249,7 +285,54 @@ public class Login extends AppCompatActivity implements GoogleApiClient.Connecti
 
 
                 Base.googleName = acct.getDisplayName();
+                userFirstName = acct.getGivenName();
+                userLastName = acct.getFamilyName();
+                Date nowDate = new Date();
+                System.out.println(nowDate);
+                java.text.SimpleDateFormat sdf =
+                        new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                currentLogIn = sdf.format(nowDate);
+                //System.out.println(userFirstName);
+                //System.out.println(userLastName);
                 Base.googleMail = acct.getEmail();
+
+                // ============
+                // SELECT * FROM USERS DATABASE, LOOP THROUGH TO CHECK IF OUR USER EMAIL ALREADY EXISTS
+
+                ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+                Call<UserResponse> call = apiInterface.retrieveUsers();
+                call.enqueue(new Callback<UserResponse>() {
+                    @Override
+                    public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                        int statusCode = response.code();
+                        users = response.body().getUsers();
+                        //users.get(i).getUserEmail().equals(Base.googleMail)
+                        for(int i = 0; i < users.size(); i++){
+                            int j = users.get(i).getUserEmail().indexOf(Base.googleMail);
+                            if(users.get(i).getUserEmail().equals(Base.googleMail)){
+                                System.out.println("Welcome back " + Base.googleMail);
+                                userEmailDB = users.get(i).getUserEmail();
+                                lastLogInDB = users.get(i).getLastLogIn();
+                                logInCountDB = users.get(i).getLogInCount();
+                                try {
+                                    updateLogIn(lastLogInDB, logInCountDB, userEmailDB);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                            }else {
+                                System.out.println("Welcome new user " + Base.googleMail);
+                                insertNewUser();
+                            }
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<UserResponse> call, Throwable t) {
+                        // Log error here since request failed
+                        Log.e("ERROR: ", t.toString());
+                    }
+                });
+
+
                 //Base.googlePhotoURL = acct.getPhotoUrl().toString();
                 // Show a message to the user that we are signing in.
                 Toast.makeText(this, "Signing in " + Base.googleName, Toast.LENGTH_LONG).show();
@@ -266,6 +349,82 @@ public class Login extends AppCompatActivity implements GoogleApiClient.Connecti
     }
     // [END handleSignInResult]
 
+    private void insertNewUser() {
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        Call<Void> newUser = apiInterface.createUser("3",Base.googleMail,currentLogIn,"1",userFirstName,userLastName);
+        newUser.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                System.out.println("new User inserted success");
+            }
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                System.out.println("new User insert FAILED");
+            }
+        });
+    }
+
+    private void updateLogIn(String lastLogInDB, int logInCountDB, String userEmailDB) throws ParseException {
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+
+        //Date date = format.parse(lastLogInDB);
+        logInCountDB += 1;
+
+        Date nowDate = new Date();
+        System.out.println(nowDate);
+        java.text.SimpleDateFormat sdf =
+                new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        currentLogIn = sdf.format(nowDate);
+
+        Call<Void> updateUser = apiInterface.updateUser(currentLogIn,logInCountDB,userEmailDB);
+        updateUser.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                System.out.println("User update inserted success");
+            }
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                System.out.println("User update insert FAILED");
+            }
+        });
+
+
+    }
+
+
+    public void printDifference(Date startDate, Date endDate){
+
+        //milliseconds
+        long different = endDate.getTime() - startDate.getTime();
+
+        System.out.println("startDate : " + startDate);
+        System.out.println("endDate : "+ endDate);
+        System.out.println("different : " + different);
+
+        long secondsInMilli = 1000;
+        long minutesInMilli = secondsInMilli * 60;
+        long hoursInMilli = minutesInMilli * 60;
+        long daysInMilli = hoursInMilli * 24;
+
+        long elapsedDays = different / daysInMilli;
+        different = different % daysInMilli;
+
+        long elapsedHours = different / hoursInMilli;
+        different = different % hoursInMilli;
+
+        long elapsedMinutes = different / minutesInMilli;
+        different = different % minutesInMilli;
+
+        long elapsedSeconds = different / secondsInMilli;
+
+        System.out.printf(
+                "%d days, %d hours, %d minutes, %d seconds%n",
+                elapsedDays,
+                elapsedHours, elapsedMinutes, elapsedSeconds);
+
+    }
 
 
     // [START signIn]
@@ -328,7 +487,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.Connecti
 
     //start main activity
     private void startMainActivity() {
-        System.out.println("Starting main activity");
+
         Intent intent = new Intent(Login.this, MainActivity.class);
         Login.this.startActivity(intent);
     }
@@ -338,7 +497,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.Connecti
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.sign_in_button:
-                System.out.println("Calling sign in method");
+
                 signIn();
                 break;
             //case R.id.sign_out_button:
@@ -354,7 +513,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.Connecti
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        Log.d("OnConnected:", " connected! BEN");
+        Log.d("OnConnected:", " connected!");
         Base.signedIn = Base.mGoogleApiClient.isConnected();
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {

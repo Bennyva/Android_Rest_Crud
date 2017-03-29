@@ -64,9 +64,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
     @Override
     public void onBindViewHolder(UserViewHolder holder, final int position) {
         holder.userID.setText(users.get(position).getUserID());
-        holder.userEmail.setText(users.get(position).getUserEmail());
+       /* holder.userEmail.setText(users.get(position).getUserEmail());
         holder.userPassword.setText(users.get(position).getUserPassword());
-        holder.userJoinDate.setText(users.get(position).getUserJoinDate().toString());
+        holder.userJoinDate.setText(users.get(position).getUserJoinDate().toString());*/
     }
 
     @Override
