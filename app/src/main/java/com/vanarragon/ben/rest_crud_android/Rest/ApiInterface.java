@@ -9,6 +9,7 @@ import android.database.Observable;
 import com.vanarragon.ben.rest_crud_android.Models.AnswerResponse;
 import com.vanarragon.ben.rest_crud_android.Models.CategoryResponse;
 import com.vanarragon.ben.rest_crud_android.Models.QuestionResponse;
+import com.vanarragon.ben.rest_crud_android.Models.ResultResponse;
 import com.vanarragon.ben.rest_crud_android.Models.User;
 import com.vanarragon.ben.rest_crud_android.Models.UserResponse;
 
@@ -74,4 +75,7 @@ public interface ApiInterface {
                           @Field("categoryID") int categoryID,
                           @Field("totalLength") int totalLength,
                           @Field("dateWritten") String dateWritten);
+
+    @GET("results/{category_id}")
+    Call<ResultResponse> retrieveResultsPerCategory(@Path("category_id") int category_id);
 }

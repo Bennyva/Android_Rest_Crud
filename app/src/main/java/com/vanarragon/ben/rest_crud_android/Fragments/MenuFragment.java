@@ -27,8 +27,14 @@ public class MenuFragment extends Fragment{
     //declare variables
     private Button btnTraining, btnTesting, btnResults, btnSettings;
     FragmentTransaction transaction;
+
+    //==============
+    //TODO YOU COULD IMPROVE THIS BY MAKING ONE CATEGORY ARRAY LIST TO ADAPTER FRAGMENT
+    //TODO AND PASS IN WHICH FRAGMENT IT WILL LOAD AFTER THE CATEGORY IS CLICK
+    //==============
     TrainingFragment trainingFragment;
     TestingFragment testingFragment;
+    ResultsFragment resultsFragment;
 
 
     //view for fragment
@@ -67,6 +73,18 @@ public class MenuFragment extends Fragment{
                 transaction = fm.beginTransaction();
                 testingFragment = new TestingFragment();
                 transaction.replace(R.id.fragment_container, testingFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+        btnResults.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getFragmentManager();
+                transaction = fm.beginTransaction();
+                resultsFragment = new ResultsFragment();
+                transaction.replace(R.id.fragment_container, resultsFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

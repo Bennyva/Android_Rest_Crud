@@ -38,7 +38,7 @@ import static com.vanarragon.ben.rest_crud_android.R.layout.cardview_categories;
  * Created by Benjamin van Arragon on 2017-02-28.
  */
 
-public class TestingFragment extends Fragment{
+public class ResultsFragment extends Fragment{
 
 
 
@@ -64,8 +64,8 @@ public class TestingFragment extends Fragment{
                         new RecyclerItemClickListener(getContext(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                             @Override public void onItemClick(View view, int position) {
                                 // do whatever
-                                Toast.makeText(getActivity(),"Testing in " + categories.get(position).getCategoryName(),Toast.LENGTH_LONG).show();
-                                openTestingModule(position, categories);
+                                Toast.makeText(getActivity(),"Training in " + categories.get(position).getCategoryName(),Toast.LENGTH_LONG).show();
+                                openResults(position, categories);
 
                             }
 
@@ -81,12 +81,12 @@ public class TestingFragment extends Fragment{
 
                                 // set dialog message
                                 alertDialogBuilder
-                                        .setMessage("Description: "+ "\n\n" + categories.get(position).getCategoryDescription()+ "\n\n" +" Would you like to continue to the Test?")
+                                        .setMessage("Description: "+ "\n\n" + categories.get(position).getCategoryDescription()+ "\n\n" +" Would you like to continue training?")
                                         .setCancelable(false)
                                         .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog,int id) {
                                                 // if this button is clicked, close
-                                                openTestingModule(position, categories);
+                                                openResults(position, categories);
                                             }
                                         })
                                         .setNegativeButton("No",new DialogInterface.OnClickListener() {
@@ -132,42 +132,11 @@ public class TestingFragment extends Fragment{
 
     }
 
-    public void triggerAnimate(){
+    private void openResults(int position, List<Category> categories){
         //open new fragment
-        NextQuestion nextQuestion = new NextQuestion();
+        ResultsPerCategoryFragment rpcFragment = new ResultsPerCategoryFragment();
         // Our shared element (in Fragment A)
-        CardView view2   = (CardView) getView().findViewById(R.id.cv_categories_layout);
-
-        //animation stuff
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setSharedElementReturnTransition(TransitionInflater.from(
-                    getActivity()).inflateTransition(R.transition.expand_cardview_trans));
-            setExitTransition(TransitionInflater.from(
-                    getActivity()).inflateTransition(android.R.transition.no_transition));
-
-            nextQuestion.setSharedElementEnterTransition(TransitionInflater.from(
-                    getActivity()).inflateTransition(R.transition.expand_cardview_trans));
-            nextQuestion.setEnterTransition(TransitionInflater.from(
-                    getActivity()).inflateTransition(android.R.transition.no_transition));
-        }*/
-
-
-
-
-        //transition fragments
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        //transaction.addSharedElement(view2, "userViewTransition");
-        transaction.replace(R.id.fragment_container, nextQuestion);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-
-
-    private void openTestingModule(int position, List<Category> categories){
-        //open new fragment
-        TestNextQuestion testNextQuestion = new TestNextQuestion();
-        // Our shared element (in Fragment A)
-        CardView view2   = (CardView) getView().findViewById(R.id.cv_categories_layout);
+        //CardView view2   = (CardView) getView().findViewById(R.id.cv_categories_layout);
 
         //animation stuff
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -176,9 +145,9 @@ public class TestingFragment extends Fragment{
             setExitTransition(TransitionInflater.from(
                     getActivity()).inflateTransition(android.R.transition.no_transition));
 
-            testNextQuestion.setSharedElementEnterTransition(TransitionInflater.from(
+            rpcFragment.setSharedElementEnterTransition(TransitionInflater.from(
                     getActivity()).inflateTransition(R.transition.expand_cardview_trans));
-            testNextQuestion.setEnterTransition(TransitionInflater.from(
+            rpcFragment.setEnterTransition(TransitionInflater.from(
                     getActivity()).inflateTransition(android.R.transition.no_transition));
         }
 
@@ -191,12 +160,12 @@ public class TestingFragment extends Fragment{
         bundle.putInt("ID", catID);
         bundle.putString("CatName", catName);
 
-        testNextQuestion.setArguments(bundle);
+        rpcFragment.setArguments(bundle);
 
         //transition fragments
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.addSharedElement(view2, "userViewTransition");
-        transaction.replace(R.id.fragment_container, testNextQuestion);
+        //transaction.addSharedElement(view2, "userViewTransition");
+        transaction.replace(R.id.fragment_container, rpcFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }

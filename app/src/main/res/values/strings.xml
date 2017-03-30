@@ -12,4 +12,6 @@
     <string name="appDesc">This is a location aware check-in mobile application for android.</string>
     <string name="appMoreInfo">To add a location, click the Greet "add" button in the bottom right to get started.</string>
 
+    <string name="resultsViewTransition">resultsViewTransition</string>
+
 </resources>

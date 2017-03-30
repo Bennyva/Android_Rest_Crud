@@ -141,7 +141,7 @@ public class TrainingFragment extends Fragment{
         CardView view2   = (CardView) getView().findViewById(R.id.cv_categories_layout);
 
         //animation stuff
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setSharedElementReturnTransition(TransitionInflater.from(
                     getActivity()).inflateTransition(R.transition.expand_cardview_trans));
             setExitTransition(TransitionInflater.from(
@@ -151,14 +151,14 @@ public class TrainingFragment extends Fragment{
                     getActivity()).inflateTransition(R.transition.expand_cardview_trans));
             nextQuestion.setEnterTransition(TransitionInflater.from(
                     getActivity()).inflateTransition(android.R.transition.no_transition));
-        }*/
+        }
 
 
 
 
         //transition fragments
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        //transaction.addSharedElement(view2, "userViewTransition");
+        transaction.addSharedElement(view2, "categoryViewTransition");
         transaction.replace(R.id.fragment_container, nextQuestion);
         transaction.addToBackStack(null);
         transaction.commit();
@@ -197,7 +197,7 @@ public class TrainingFragment extends Fragment{
 
         //transition fragments
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.addSharedElement(view2, "userViewTransition");
+        transaction.addSharedElement(view2, "categoryViewTransition");
         transaction.replace(R.id.fragment_container, nextQuestion);
         transaction.addToBackStack(null);
         transaction.commit();
