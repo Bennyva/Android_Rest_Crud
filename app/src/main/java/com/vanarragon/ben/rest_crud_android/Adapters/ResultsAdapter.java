@@ -9,10 +9,15 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.vanarragon.ben.rest_crud_android.Activities.Base;
 import com.vanarragon.ben.rest_crud_android.Models.Category;
 import com.vanarragon.ben.rest_crud_android.Models.Result;
 import com.vanarragon.ben.rest_crud_android.R;
 
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultViewHolder> {
@@ -24,10 +29,11 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultVi
     private Context context;
 
 
+
     public static class ResultViewHolder extends RecyclerView.ViewHolder {
         LinearLayout resultsLayout;
         CardView cvCategoriesLayout;
-        TextView resultID,resultDate;
+        TextView resultScore,resultDateYear, resultDateTime, userName, resultNumbers;
 
 
         public ResultViewHolder(View v) {
@@ -35,8 +41,11 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultVi
 
             cvCategoriesLayout = (CardView) v.findViewById(R.id.cv_results_layout);
 
-            resultID = (TextView) v.findViewById(R.id.result_id);
-            resultDate = (TextView) v.findViewById(R.id.result_date);
+            resultScore = (TextView) v.findViewById(R.id.result_score);
+            resultDateYear = (TextView) v.findViewById(R.id.result_date_year);
+            resultDateTime = (TextView) v.findViewById(R.id.result_date_time);
+            userName = (TextView) v.findViewById(R.id.user_name);
+            resultNumbers = (TextView) v.findViewById(R.id.result_numbers);
         }
     }
 
@@ -52,18 +61,42 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultVi
         View view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
         //view.setOnClickListener(new MyOnClickListener());
 
+
+
+
+
+
         return new ResultViewHolder(view);
     }
 
 
     @Override
     public void onBindViewHolder(ResultViewHolder holder, final int position) {
-        /*System.out.println("categoryID " + holder.categoryID);
-        System.out.println("categoryName " + holder.categoryName);
-        System.out.println("categoryID " + categories.get(position).getCategoryID().toString());
-        System.out.println("categoryID " + categories.get(position).getCategoryName());*/
-        holder.resultID.setText(results.get(position).getResultID().toString());
-        holder.resultDate.setText(results.get(position).getDateWritten());
+
+        float score = 0;
+        float correct = results.get(position).getResultScore();
+        float total = results.get(position).getTotalLength();
+        score = (correct * 100.0f) / total;
+
+        String formattedScore = String.format("%.2f", score);
+        holder.resultScore.setText(formattedScore+"%");
+
+
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(results.get(position).getDateWritten());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String formattedDate = new SimpleDateFormat("MMM dd yyyy, h:mma").format(date);
+
+        holder.resultDateYear.setText(formattedDate);
+
+        holder.userName.setText(Base.googleName);
+
+        holder.resultNumbers.setText(results.get(position).getResultScore() + "/" + results.get(position).getTotalLength() + " -");
+
+
 
     }
 

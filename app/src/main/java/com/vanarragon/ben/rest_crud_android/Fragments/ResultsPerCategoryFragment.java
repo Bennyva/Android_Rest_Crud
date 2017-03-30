@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.vanarragon.ben.rest_crud_android.Activities.Base;
 import com.vanarragon.ben.rest_crud_android.Adapters.CategoriesAdapter;
 import com.vanarragon.ben.rest_crud_android.Adapters.RecyclerItemClickListener;
 import com.vanarragon.ben.rest_crud_android.Adapters.ResultsAdapter;
@@ -45,6 +46,7 @@ import static com.vanarragon.ben.rest_crud_android.R.layout.cardview_results;
 public class ResultsPerCategoryFragment extends Fragment{
 
     int category_id = 0;
+    int user_id = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,9 +58,10 @@ public class ResultsPerCategoryFragment extends Fragment{
         Bundle bundle = this.getArguments();
         if(bundle != null){
             category_id = bundle.getInt("ID");
+            user_id = Integer.parseInt(Base.userID);
         }
 
-        Call<ResultResponse> call = apiInterface.retrieveResultsPerCategory(category_id);
+        Call<ResultResponse> call = apiInterface.retrieveResultsPerCategory(category_id, user_id);
         call.enqueue(new Callback<ResultResponse>() {
             @Override
             public void onResponse(Call<ResultResponse> call, Response<ResultResponse> response) {
