@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "http://10.8.14.19:3000/api/";
+    public static final String BASE_URL = "https://vanarragon-paramedic.mybluemix.net/api/";
     private static Retrofit retrofit = null;
 
 

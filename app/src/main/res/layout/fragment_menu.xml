@@ -5,6 +5,7 @@
               android:orientation="vertical"
               android:gravity="center_horizontal">
 
+<!--
     <TextView
         android:text="@string/menu_title"
         android:layout_width="wrap_content"
@@ -14,47 +15,80 @@
         android:textSize="25dp"
         android:textColor="@color/black"
         android:textStyle="bold"/>
+-->
+
+
 
     <Button
-        android:layout_width="285dp"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="15dp"
         android:id="@+id/btnTraining"
-        android:background="@color/colorPrimary"
-        android:text="@string/btnTraining"
-        android:textColor="@color/white"/>
-    <Button
-        android:layout_width="285dp"
+
+        android:text="Training"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="15dp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#260D0D"
+        android:shadowDx="-10"
+        android:shadowDy="7"
+        android:shadowRadius="9"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        />
+
+    <Button
         android:id="@+id/btnTesting"
-        android:background="@color/colorPrimary"
+
         android:text="@string/btnTesting"
-        android:textColor="@color/white"/>
-    <Button
-        android:layout_width="285dp"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="15dp"
+        android:background="@drawable/buttonshapeother"
+        android:shadowColor="#260D0D"
+        android:shadowDx="-10"
+        android:shadowDy="7"
+        android:shadowRadius="9"
+        />
+
+    <Button
         android:id="@+id/btnResults"
-        android:background="@color/colorPrimary"
+
         android:text="@string/btnResults"
-        android:textColor="@color/white"/>
-    <Button
-        android:layout_width="285dp"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="15dp"
-        android:id="@+id/btnSettings"
-        android:background="@color/colorPrimary"
-        android:text="@string/btnSettings"
-        android:textColor="@color/white"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#260D0D"
+        android:shadowDx="-10"
+        android:shadowDy="7"
+        android:shadowRadius="9"
+        />
+
+
+
+    <Button
+        android:id="@+id/btnLeaderBoard"
+
+        android:text="Leaderboard"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:background="@drawable/buttonshapeother"
+        android:shadowColor="#260D0D"
+        android:shadowDx="-10"
+        android:shadowDy="7"
+        android:shadowRadius="9"
         />
 
 

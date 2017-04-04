@@ -77,5 +77,5 @@ public interface ApiInterface {
                           @Field("dateWritten") String dateWritten);
 
     @GET("results/{category_id}/{user_id}")
-    Call<ResultResponse> retrieveResultsPerCategory(@Path("category_id") int category_id, @Path("user_id") int user_id);
+    Call<ResultResponse> retrieveResultsPerCategory(@Path("category_id") int category_id, @Path("user_id") String user_id);
 }

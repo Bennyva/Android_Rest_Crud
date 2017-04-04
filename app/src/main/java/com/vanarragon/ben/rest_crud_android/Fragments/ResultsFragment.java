@@ -64,14 +64,14 @@ public class ResultsFragment extends Fragment{
                         new RecyclerItemClickListener(getContext(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                             @Override public void onItemClick(View view, int position) {
                                 // do whatever
-                                Toast.makeText(getActivity(),"Training in " + categories.get(position).getCategoryName(),Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getActivity(),"Training in " + categories.get(position).getCategoryName(),Toast.LENGTH_LONG).show();
                                 openResults(position, categories);
 
                             }
 
                             @Override public void onLongItemClick(View view, final int position) {
                                 // do whatever
-                                Toast.makeText(getActivity(),"Hi, long press" + position,Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getActivity(),"Hi, long press" + position,Toast.LENGTH_LONG).show();
 
                                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                                         getActivity());

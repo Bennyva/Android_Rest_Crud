@@ -1,21 +1,15 @@
 package com.vanarragon.ben.rest_crud_android.Fragments;
 
-import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
-import com.vanarragon.ben.rest_crud_android.Activities.Base;
-import com.vanarragon.ben.rest_crud_android.Activities.Login;
 import com.vanarragon.ben.rest_crud_android.R;
 
 /**
@@ -25,7 +19,7 @@ import com.vanarragon.ben.rest_crud_android.R;
 public class MenuFragment extends Fragment{
 
     //declare variables
-    private Button btnTraining, btnTesting, btnResults, btnSettings;
+    private Button btnTraining, btnTesting, btnResults, btnLeaderboards;
     FragmentTransaction transaction;
 
     //==============
@@ -52,7 +46,15 @@ public class MenuFragment extends Fragment{
         btnTraining = (Button) myView.findViewById(R.id.btnTraining);
         btnTesting = (Button) myView.findViewById(R.id.btnTesting);
         btnResults = (Button) myView.findViewById(R.id.btnResults);
-        btnSettings = (Button) myView.findViewById(R.id.btnSettings);
+        btnLeaderboards = (Button) myView.findViewById(R.id.btnLeaderBoard);
+
+        Typeface face = Typeface.createFromAsset(getActivity().getAssets(), "fonts/TitilliumWeb-Regular.ttf");
+        btnTraining.setTypeface(face);
+        btnTesting.setTypeface(face);
+        btnResults.setTypeface(face);
+        btnLeaderboards.setTypeface(face);
+
+
 
         btnTraining.setOnClickListener(new View.OnClickListener() {
             @Override

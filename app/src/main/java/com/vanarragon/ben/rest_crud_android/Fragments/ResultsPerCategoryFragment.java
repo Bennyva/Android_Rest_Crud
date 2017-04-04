@@ -46,7 +46,7 @@ import static com.vanarragon.ben.rest_crud_android.R.layout.cardview_results;
 public class ResultsPerCategoryFragment extends Fragment{
 
     int category_id = 0;
-    int user_id = 0;
+    String user_id = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class ResultsPerCategoryFragment extends Fragment{
         Bundle bundle = this.getArguments();
         if(bundle != null){
             category_id = bundle.getInt("ID");
-            user_id = Integer.parseInt(Base.userID);
+            user_id = Base.userID;
         }
 
         Call<ResultResponse> call = apiInterface.retrieveResultsPerCategory(category_id, user_id);

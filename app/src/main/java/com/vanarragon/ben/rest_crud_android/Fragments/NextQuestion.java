@@ -257,7 +257,7 @@ public class NextQuestion extends Fragment{
 
     private void checkUserInput(){
         if(userInputID != null && correctAnswerID != null){
-            if(userInputID == correctAnswerID){
+            if(userInputID.equals(correctAnswerID)){
                 System.out.println("Correct Answer!");
                 // Toast.makeText(getActivity(), "Correct!", Toast.LENGTH_SHORT).show();
                 StyleableToast.makeText(getActivity(), "Correct!", Toast.LENGTH_SHORT, R.style.SuccessToast).show();
@@ -269,7 +269,9 @@ public class NextQuestion extends Fragment{
         }
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
 
-
-
+    }
 }

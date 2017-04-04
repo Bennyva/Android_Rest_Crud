@@ -58,6 +58,7 @@ public class TestNextQuestion extends Fragment{
     Integer userInputID;
     private Handler mHandler = new Handler();
     private int correctAnswersCounter, wrongAnswersCounter;
+    private int counterTime = 3500;
 
 
     @Override
@@ -105,7 +106,7 @@ public class TestNextQuestion extends Fragment{
                     @Override
                     public void onClick(View v) {
                         checkUserInput();
-                        new CountDownTimer(3500, 1000) {
+                        new CountDownTimer(counterTime, 1000) {
                             public void onTick(long millisUntilFinished) {
                                 lblCountdown.setText(""+ millisUntilFinished / 1000);
                             }
@@ -124,6 +125,7 @@ public class TestNextQuestion extends Fragment{
                                 //sets the title after the first iteration and populates each quesitons with the data pulled from the questions array above
                                 if(i == 0 || i < questions.size()){
                                     btnNextQuestion.setText("Next Question");
+                                    counterTime = 0;
                                     int questionID = questions.get(i).getQuestionID();
                                     //int categoryID = questions.get(i).getCategoryID();
                                     String questionText = questions.get(i).getQuestionText();
@@ -171,7 +173,7 @@ public class TestNextQuestion extends Fragment{
                                     transaction.commit();
                                 }
                             }
-                        }, 3500);
+                        }, counterTime);
                     }
                 });
             }
@@ -186,7 +188,7 @@ public class TestNextQuestion extends Fragment{
 
     private void checkUserInput(){
         if(userInputID != null && correctAnswerID != null){
-            if(userInputID == correctAnswerID){
+            if(userInputID.equals(correctAnswerID)){
                 System.out.println("Correct Answer!");
                 // Toast.makeText(getActivity(), "Correct!", Toast.LENGTH_SHORT).show();
                 //StyleableToast.makeText(getActivity(), "Correct!", Toast.LENGTH_SHORT, R.style.SuccessToast).show();
@@ -199,7 +201,7 @@ public class TestNextQuestion extends Fragment{
     }
 
 
-    public void uploadResults(){
+    public void uploadResults() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         int totalLength = correctAnswersCounter + wrongAnswersCounter;
         Date nowDate = new Date();
@@ -213,19 +215,21 @@ public class TestNextQuestion extends Fragment{
         System.out.println(category_id);
         System.out.println(totalLength);
         System.out.println(testWrittenDate);
+        if (totalLength != 0) {
+            //correctAnswersCounter,Base.userID,category_id,totalLength,testWrittenDate
+            Call<Void> newResult = apiInterface.insertResult(correctAnswersCounter, Base.userID, category_id, totalLength, testWrittenDate);
+            newResult.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    System.out.println("new result inserted success");
+                }
 
-        //correctAnswersCounter,Base.userID,category_id,totalLength,testWrittenDate
-        Call<Void> newResult = apiInterface.insertResult(correctAnswersCounter,Base.userID,category_id,totalLength,testWrittenDate);
-        newResult.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                System.out.println("new result inserted success");
-            }
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                System.out.println("new result insert FAILED");
-            }
-        });
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    System.out.println("new result insert FAILED");
+                }
+            });
+        }
     }
 
     @Override

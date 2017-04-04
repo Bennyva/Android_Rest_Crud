@@ -71,7 +71,7 @@ public class TestingFragment extends Fragment{
 
                             @Override public void onLongItemClick(View view, final int position) {
                                 // do whatever
-                                Toast.makeText(getActivity(),"Hi, long press" + position,Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getActivity(),"Hi, long press" + position,Toast.LENGTH_LONG).show();
 
                                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                                         getActivity());
